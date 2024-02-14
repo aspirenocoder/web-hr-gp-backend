@@ -10,7 +10,7 @@ console.log(
 
 const sequelize = new Sequelize(
   process.env.DBName,
-  process.env.UserName,
+  "avnadmin",
   process.env.DBPassw,
   {
     dialect: "mysql",
