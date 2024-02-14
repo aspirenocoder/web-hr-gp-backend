@@ -1,14 +1,22 @@
-const Sequelize = require("sequelize")
+const Sequelize = require("sequelize");
+require("dotenv").config();
+console.log(
+  process.env.DBName,
+  process.env.UserName,
+  process.env.DBPassw,
+  process.env.HostName,
+  process.env.Port
+);
 
 const sequelize = new Sequelize(
-    "defaultdb",
-    "avnadmin",
-    "AVNS_ZcJcUB5mhTBQrpO2bCy",
-    {
-      dialect: "mysql",
-      host: "mysql-24d8e3fd-project-bf98.a.aivencloud.com",
-      port: "17777",
-    }
-  );
+  process.env.DBName,
+  process.env.UserName,
+  process.env.DBPassw,
+  {
+    dialect: "mysql",
+    host: process.env.HostName,
+    port: process.env.Port,
+  }
+);
 
-  module.exports = sequelize
+module.exports = sequelize;

@@ -1,8 +1,9 @@
 const AWS = require("aws-sdk");
+require("dotenv").config();
 
 AWS.config.update({
-  accessKeyId: "AKIAY5PV4H3X7C7MC4Y5",
-  secretAccessKey: "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",
+  accessKeyId: process.env.SNSKey,
+  secretAccessKey: process.env.SNSSecret,
   region: "ap-south-1",
 });
 
@@ -22,11 +23,11 @@ sns.createTopic(topicParams, (err, data) => {
 
 const subscribeParams = {
   Protocol: "sms",
-  TopicArn: "arn:aws:sns:ap-south-1:613085363951:OTPMessage",
+  TopicArn: process.env.ARN,
   Endpoint: "+917867972157",
 };
 
-const sendOTP = async (number,otp) => {
+const sendOTP = async (number, otp) => {
   sns.subscribe(subscribeParams, async (err, data) => {
     if (err) {
       console.error("Error subscribing mobile number:", err);
@@ -48,20 +49,20 @@ const sendOTP = async (number,otp) => {
             "SMS sent to India mobile number:",
             publishData.MessageId
           );
-        //   try {
-        //     const newUser = await User.create({
-        //       mobilenumber: "9585294282",
-        //       otp: number,
-        //     });
+          //   try {
+          //     const newUser = await User.create({
+          //       mobilenumber: "9585294282",
+          //       otp: number,
+          //     });
 
-        //     if (newUser instanceof User) {
-        //       console.log("New user created:", newUser.toJSON());
-        //     } else {
-        //       console.log("User creation failed");
-        //     }
-        //   } catch (error) {
-        //     console.error("Error creating user:", error);
-        //   }
+          //     if (newUser instanceof User) {
+          //       console.log("New user created:", newUser.toJSON());
+          //     } else {
+          //       console.log("User creation failed");
+          //     }
+          //   } catch (error) {
+          //     console.error("Error creating user:", error);
+          //   }
         }
       });
     }
