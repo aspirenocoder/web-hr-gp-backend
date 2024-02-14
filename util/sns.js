@@ -8,7 +8,6 @@ AWS.config.update({
 });
 
 const sns = new AWS.SNS();
-ggg;
 
 const topicParams = {
   Name: "OTPMessage",
