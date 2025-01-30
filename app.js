@@ -9,7 +9,7 @@ const userRoute = require("./routes/loginRoute");
 const bodyParser = require("body-parser");
 
 const app = express();
-const port = process.env.SERVER_PORT || 5000;
+const port = process.env.SERVER_PORT || 4000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
