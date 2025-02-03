@@ -22,7 +22,7 @@ exports.sendOTP = async (req, res) => {
 
     const otp = Math.floor(1000 + Math.random() * 9000).toString();
     await sendOtp(number, otp);
-    await runWhatsappFun(number, otp);
+    await runWhatsappFun(otp, number);
     const createOtp = await User.create({ otp, mobilenumber: number });
     res.status(200).json({
       message: `otp sent succesfully to this mobile number ${number}`,
